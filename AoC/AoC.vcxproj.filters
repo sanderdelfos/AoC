@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\1">
+      <UniqueIdentifier>{2bed3302-cb8f-48e6-9774-0238450bd6c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\2">
+      <UniqueIdentifier>{b157bfc2-dad3-49bf-a7a9-9143be6f0645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3">
+      <UniqueIdentifier>{69d0ca41-f132-4129-845e-518edda79cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\4">
+      <UniqueIdentifier>{2fb18ea7-ab6b-4e87-a312-58611119f751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\5">
+      <UniqueIdentifier>{c8084493-f918-4d0d-b3d9-639654530d77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\6">
+      <UniqueIdentifier>{7d861d76-f31b-43e0-b641-55b7617264c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AoC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="1\1.h">
+      <Filter>Source Files\1</Filter>
+    </ClInclude>
+    <ClInclude Include="2\2.h">
+      <Filter>Source Files\2</Filter>
+    </ClInclude>
+    <ClInclude Include="3\3.h">
+      <Filter>Source Files\3</Filter>
+    </ClInclude>
+    <ClInclude Include="4\4.h">
+      <Filter>Source Files\4</Filter>
+    </ClInclude>
+    <ClInclude Include="5\5.h">
+      <Filter>Source Files\5</Filter>
+    </ClInclude>
+    <ClInclude Include="6\6.h">
+      <Filter>Source Files\6</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="1\1.txt">
+      <Filter>Source Files\1</Filter>
+    </Text>
+    <Text Include="1\1Sample.txt">
+      <Filter>Source Files\1</Filter>
+    </Text>
+    <Text Include="2\2.txt">
+      <Filter>Source Files\2</Filter>
+    </Text>
+    <Text Include="2\2Sample.txt">
+      <Filter>Source Files\2</Filter>
+    </Text>
+    <Text Include="3\3.txt">
+      <Filter>Source Files\3</Filter>
+    </Text>
+    <Text Include="3\3Sample.txt">
+      <Filter>Source Files\3</Filter>
+    </Text>
+    <Text Include="4\4.txt">
+      <Filter>Source Files\4</Filter>
+    </Text>
+    <Text Include="4\4Sample.txt">
+      <Filter>Source Files\4</Filter>
+    </Text>
+    <Text Include="5\5.txt">
+      <Filter>Source Files\5</Filter>
+    </Text>
+    <Text Include="5\5Sample.txt">
+      <Filter>Source Files\5</Filter>
+    </Text>
+    <Text Include="6\6.txt">
+      <Filter>Source Files\6</Filter>
+    </Text>
+    <Text Include="6\6Sample.txt">
+      <Filter>Source Files\6</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
