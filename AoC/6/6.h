@@ -1,4 +1,5 @@
 #pragma once
+#include <execution>
 #include <map>
 
 #include "Input.h"
@@ -128,22 +129,22 @@ public:
 	int partTwo(const Input& input) override
 	{
 		Map const map{input.lines, false};
-		auto count = 0;
+		std::atomic_int count = 0;
 		for (auto const& line : map.data)
 		{
-			for (auto const& coordinate : line)
+			std::for_each(std::execution::par_unseq, line.begin(), line.end(), [&](Coordinate const& coordinate)
 			{
 				auto copy = map;
 				auto& editCoordinate = copy.get(coordinate.location);
 				if (editCoordinate.strValue == "#")
-					continue;
+					return;
 
 				editCoordinate.strValue = "#";
 				if (copy.walk())
 					++count;
 				//map.draw();
 				//std::cout << coordinate.y() << ", " << coordinate.x() << "\n";
-			}
+			});
 		}
 
 		return count;
