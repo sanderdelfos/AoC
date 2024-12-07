@@ -11,7 +11,7 @@ public:
 	{
 	}
 
-	int partOne(const Input& input) override
+	long long partOne(const Input& input) override
 	{
 		auto count = 0;
 		for (auto const& line : input.lines)
@@ -44,7 +44,7 @@ public:
 		return count;
 	}
 
-	int partTwo(const Input& input) override
+	long long partTwo(const Input& input) override
 	{
 		const std::string enableStr = "do()";
 		const std::string disableStr = "don't()";

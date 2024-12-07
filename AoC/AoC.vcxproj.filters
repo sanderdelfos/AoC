@@ -31,6 +31,9 @@
     <Filter Include="Source Files\6">
       <UniqueIdentifier>{7d861d76-f31b-43e0-b641-55b7617264c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\7">
+      <UniqueIdentifier>{3c7d16ff-05c2-4178-b2e6-7c63c29320b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AoC.cpp">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="6\6.h">
       <Filter>Source Files\6</Filter>
+    </ClInclude>
+    <ClInclude Include="7\7.h">
+      <Filter>Source Files\7</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Source Files</Filter>
@@ -99,6 +105,12 @@
     </Text>
     <Text Include="6\6Sample.txt">
       <Filter>Source Files\6</Filter>
+    </Text>
+    <Text Include="7\7.txt">
+      <Filter>Source Files\7</Filter>
+    </Text>
+    <Text Include="7\7Sample.txt">
+      <Filter>Source Files\7</Filter>
     </Text>
   </ItemGroup>
 </Project>

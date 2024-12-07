@@ -51,7 +51,7 @@ public:
 		return true;
 	}
 
-	int partOne(const Input& input) override
+	long long partOne(const Input& input) override
 	{
 		std::vector<std::vector<int>> parsed;
 		parse(input, parsed);
@@ -80,7 +80,7 @@ public:
 		return false;
 	}
 
-	int partTwo(const Input& input) override
+	long long partTwo(const Input& input) override
 	{
 		std::vector<std::vector<int>> parsed;
 		parse(input, parsed);

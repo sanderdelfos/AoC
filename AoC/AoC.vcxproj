@@ -139,6 +139,7 @@
     <ClInclude Include="5\5.h" />
     <ClInclude Include="4\4.h" />
     <ClInclude Include="1\1.h" />
+    <ClInclude Include="7\7.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="6\6.h" />
     <ClInclude Include="3\3.h" />
@@ -158,6 +159,8 @@
     <Text Include="3\3Sample.txt" />
     <Text Include="2\2.txt" />
     <Text Include="2\2Sample.txt" />
+    <Text Include="7\7.txt" />
+    <Text Include="7\7Sample.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

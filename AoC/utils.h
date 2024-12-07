@@ -1,9 +1,11 @@
 #pragma once
 #include <algorithm>
+#include <map>
 #include <sstream>
 #include <string>
 #include <vector>
 #include <ranges>
+#include <unordered_map>
 
 inline std::vector<std::string> split(std::string const& text, std::string const& delimiter)
 {
@@ -28,7 +30,7 @@ inline std::vector<std::string> split(std::string const& text, std::string const
 
 auto range(auto const num)
 {
-	return std::ranges::iota_view(0, num);
+	return std::ranges::iota_view(0, static_cast<int>(num));
 }
 
 using Location = std::pair<int, int>;
@@ -180,3 +182,39 @@ public:
 
 	std::vector<std::vector<Coordinate>> data;
 };
+
+template <typename T>
+std::vector<std::vector<T>> add(std::vector<T> const& combination, int const numOptions)
+{
+	std::vector<std::vector<T>> combinations;
+	for (auto const i : range(numOptions))
+	{
+		auto newCombination = combination;
+		newCombination.push_back(static_cast<T>(i));
+		combinations.emplace_back(newCombination);
+	}
+	return combinations;
+}
+
+
+template <typename T>
+std::vector<std::vector<T>> const& generateCombinations(int const vectorSize, int const numOptions)
+{
+	static std::map<std::pair<int, int>, std::vector<std::vector<T>>> cache;
+	auto const key = std::make_pair(vectorSize, numOptions);
+	if (cache.contains(key))
+		return cache.at(key);
+
+	std::vector<std::vector<T>> combinations = add(std::vector<T>{}, numOptions);
+	while (combinations[0].size() < vectorSize)
+	{
+		std::vector<std::vector<T>> newCombinations;
+		for (auto const& combination : combinations)
+			for (auto const& newCombination : add(combination, numOptions))
+				newCombinations.emplace_back(newCombination);
+		combinations = newCombinations;
+	}
+
+	cache[key] = combinations;
+	return cache[key];
+}

@@ -22,7 +22,7 @@ public:
 		}
 	}
 
-	int partOne(const Input& input) override
+	long long partOne(const Input& input) override
 	{
 		std::vector<int> left;
 		std::vector<int> right;
@@ -41,7 +41,7 @@ public:
 		return distance;
 	}
 
-	int partTwo(const Input& input) override
+	long long partTwo(const Input& input) override
 	{
 		std::vector<int> left;
 		std::vector<int> right;

@@ -131,7 +131,7 @@ public:
 	}
 
 
-	int partOne(const Input& input) override
+	long long partOne(const Input& input) override
 	{
 		auto const grid = Grid{input.lines, false};
 		auto const horizontal = countHorizontal(grid);
@@ -147,7 +147,7 @@ public:
 			diagonalMirroredHorizontal + diagonalMirroredHorizontalVertical;
 	}
 
-	int partTwo(const Input& input) override
+	long long partTwo(const Input& input) override
 	{
 		auto grid = Grid{input.lines, false};
 		return countXMas(grid);

@@ -69,7 +69,7 @@ public:
 		return valid;
 	}
 
-	int partOne(const Input& input) override
+	long long partOne(const Input& input) override
 	{
 		auto const parsed = parse(input);
 
@@ -86,7 +86,7 @@ public:
 		return count;
 	}
 
-	int partTwo(const Input& input) override
+	long long partTwo(const Input& input) override
 	{
 		auto const parsed = parse(input);
 		auto count = 0;

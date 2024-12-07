@@ -117,7 +117,7 @@ public:
 	{
 	}
 
-	int partOne(const Input& input) override
+	long long partOne(const Input& input) override
 	{
 		Map map{input.lines, false};
 		map.walk();
@@ -126,7 +126,7 @@ public:
 		return map.countVisited();
 	}
 
-	int partTwo(const Input& input) override
+	long long partTwo(const Input& input) override
 	{
 		Map const map{input.lines, false};
 		std::atomic_int count = 0;

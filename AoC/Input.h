@@ -7,10 +7,10 @@
 
 struct Results
 {
-	int samplePartOne;
-	int samplePartTwo;
-	int partOne;
-	int partTwo;
+	long long samplePartOne;
+	long long samplePartTwo;
+	long long partOne;
+	long long partTwo;
 };
 
 
@@ -39,8 +39,8 @@ public:
 	{
 	}
 
-	virtual int partOne(Input const& input) = 0;
-	virtual int partTwo(Input const& input) = 0;
+	virtual long long partOne(Input const& input) = 0;
+	virtual long long partTwo(Input const& input) = 0;
 
 	Results getResults()
 	{
