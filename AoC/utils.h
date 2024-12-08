@@ -33,6 +33,11 @@ auto range(auto const num)
 	return std::ranges::iota_view(0, static_cast<int>(num));
 }
 
+auto range(auto const start, auto const bound)
+{
+	return std::ranges::iota_view(static_cast<int>(start), static_cast<int>(bound));
+}
+
 using Location = std::pair<int, int>;
 class Coordinate
 {
@@ -53,6 +58,27 @@ public:
 	int x() const
 	{
 		return location.second;
+	}
+
+	double getDirection(Coordinate const& other) const
+	{
+		double const dx = other.x() - x();
+		double const dy = other.y() - y();
+		if (std::abs(dx) < DBL_EPSILON)
+			return INT_MAX;
+		return dy / dx;
+	}
+
+	int getDistanceSquared(Coordinate const& other) const
+	{
+		auto const dx = std::abs(x() - other.x());
+		auto const dy = std::abs(y() - other.y());
+		return static_cast<int>(std::pow(dx, 2)) + static_cast<int>(std::pow(dy, 2));
+	}
+
+	double getDistance(Coordinate const& other) const
+	{
+		return std::sqrt(getDistanceSquared(other));
 	}
 
 	Location location;
