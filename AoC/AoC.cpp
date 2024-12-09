@@ -11,6 +11,7 @@
 #include "6/6.h"
 #include "7/7.h"
 #include "8/8.h"
+#include "9/9.h"
 
 std::unique_ptr<Puzzle> getPuzzle(int const day)
 {
@@ -32,6 +33,8 @@ std::unique_ptr<Puzzle> getPuzzle(int const day)
 		return std::make_unique<Seven>();
 	case 8:
 		return std::make_unique<Eight>();
+	case 9:
+		return std::make_unique<Nine>();
 	}
 
 	return {};
@@ -44,8 +47,8 @@ int main()
 	std::cin >> day;
 	auto const results = getPuzzle(day)->getResults();
 	std::cout << "Part one Sample result for day " << day << " is " << results.samplePartOne << "\n";
-	std::cout << "Part two Sample result for day " << day << " is " << results.partOne << "\n";
-	std::cout << "Part one Result for day " << day << " is " << results.samplePartTwo << "\n";
+	std::cout << "Part one Result for day " << day << " is " << results.partOne << "\n";
+	std::cout << "Part two Sample result for day " << day << " is " << results.samplePartTwo << "\n";
 	std::cout << "Part two Result for day " << day << " is " << results.partTwo << "\n";
 }
 
