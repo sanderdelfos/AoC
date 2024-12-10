@@ -131,6 +131,11 @@ public:
 		return data[location.first][location.second];
 	}
 
+	bool boundsCheck(Coordinate const& current, Location const& dLocation) const
+	{
+		return boundsCheck(current, dLocation.first, dLocation.second);
+	}
+
 	bool boundsCheck(Coordinate const& current, int const dy, int const dx) const
 	{
 		auto const yNext = current.y() + dy;
@@ -139,6 +144,11 @@ public:
 		return yNext >= 0 && yNext < yMax() && xNext >= 0 && xNext < xMax();
 	}
 
+
+	Coordinate& get(Coordinate const& current, Location const& dLocation)
+	{
+		return get(current, dLocation.first, dLocation.second);
+	}
 
 	Coordinate& get(Coordinate const& current, int const dy, int const dx)
 	{
