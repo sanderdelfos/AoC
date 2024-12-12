@@ -38,7 +38,41 @@ auto range(auto const start, auto const bound)
 	return std::ranges::iota_view(static_cast<int>(start), static_cast<int>(bound));
 }
 
-using Location = std::pair<int, int>;
+class Location : public std::pair<int, int>
+{
+public:
+	Location() = default;
+	Location(int y, int x) :
+		std::pair<int, int>(y, x)
+	{
+	}
+
+	Location move(Location const dLocation) const
+	{
+		auto move = *this;
+		move.first += dLocation.first;
+		move.second += dLocation.second;
+		return move;
+	}
+
+	int getDistanceSquared(Location const& other) const
+	{
+		auto const dx = std::abs(x() - other.x());
+		auto const dy = std::abs(y() - other.y());
+		return static_cast<int>(std::pow(dx, 2)) + static_cast<int>(std::pow(dy, 2));
+	}
+
+	int y() const
+	{
+		return first;
+	}
+
+	int x() const
+	{
+		return second;
+	}
+};
+
 class Coordinate
 {
 public:
@@ -52,12 +86,12 @@ public:
 
 	int y() const
 	{
-		return location.first;
+		return location.y();
 	}
 
 	int x() const
 	{
-		return location.second;
+		return location.x();
 	}
 
 	double getDirection(Coordinate const& other) const
@@ -71,9 +105,7 @@ public:
 
 	int getDistanceSquared(Coordinate const& other) const
 	{
-		auto const dx = std::abs(x() - other.x());
-		auto const dy = std::abs(y() - other.y());
-		return static_cast<int>(std::pow(dx, 2)) + static_cast<int>(std::pow(dy, 2));
+		return location.getDistanceSquared(other.location);
 	}
 
 	double getDistance(Coordinate const& other) const
@@ -214,6 +246,25 @@ public:
 	int yMax() const
 	{
 		return data.size();
+	}
+
+	int size() const
+	{
+		return xMax() * yMax();
+	}
+
+	static auto getSurroundingLocations()
+	{
+		return std::vector<Location>({{-1, 0}, {1, 0}, {0, 1}, {0, -1}});
+	}
+
+	auto getSurroundingCoordinates(Coordinate const& coordinate)
+	{
+		std::vector<Coordinate*> result;
+		for (auto const& surroundingLocation : getSurroundingLocations())
+			if (boundsCheck(coordinate, surroundingLocation))
+				result.push_back(&get(coordinate, surroundingLocation));
+		return result;
 	}
 
 	std::vector<std::vector<Coordinate>> data;

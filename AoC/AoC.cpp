@@ -6,6 +6,7 @@
 #include "1/1.h"
 #include "10/10.h"
 #include "11/11.h"
+#include "12/12.h"
 #include "2/2.h"
 #include "3/3.h"
 #include "4/4.h"
@@ -41,6 +42,8 @@ std::unique_ptr<Puzzle> getPuzzle(int const day)
 		return std::make_unique<Ten>();
 	case 11:
 		return std::make_unique<Eleven>();
+	case 12:
+		return std::make_unique<Twelve>();
 	}
 
 	return {};
