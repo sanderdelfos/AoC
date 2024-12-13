@@ -38,36 +38,59 @@ auto range(auto const start, auto const bound)
 	return std::ranges::iota_view(static_cast<int>(start), static_cast<int>(bound));
 }
 
-class Location : public std::pair<int, int>
+class Location : public std::pair<long long, long long>
 {
 public:
 	Location() = default;
-	Location(int y, int x) :
-		std::pair<int, int>(y, x)
+
+	Location(long long y, long long x) :
+		std::pair<long long, long long>(y, x)
 	{
 	}
 
-	Location move(Location const dLocation) const
+	[[nodiscard]] Location move(Location const dLocation, long long num = 1) const
 	{
 		auto move = *this;
-		move.first += dLocation.first;
-		move.second += dLocation.second;
+		move.first += num * dLocation.first;
+		move.second += num * dLocation.second;
 		return move;
 	}
 
-	int getDistanceSquared(Location const& other) const
+	[[nodiscard]] Location moveBack(Location const dLocation) const
+	{
+		auto move = *this;
+		move.first -= dLocation.first;
+		move.second -= dLocation.second;
+		return move;
+	}
+
+	[[nodiscard]] long long getDistanceSquared(Location const& other) const
 	{
 		auto const dx = std::abs(x() - other.x());
 		auto const dy = std::abs(y() - other.y());
-		return static_cast<int>(std::pow(dx, 2)) + static_cast<int>(std::pow(dy, 2));
+		return static_cast<long long>(std::pow(dx, 2)) + static_cast<long long>(std::pow(dy, 2));
 	}
 
-	int y() const
+	[[nodiscard]] long long getManhattenDistance(Location const& other) const
+	{
+		return std::abs(other.x() - x()) + std::abs(other.y() - y());
+	}
+
+	[[nodiscard]] double getDirection(Location const& other) const
+	{
+		long long const dx = other.x() - x();
+		long long const dy = other.y() - y();
+		if (dx == 0)
+			return DBL_MAX;
+		return static_cast<double>(dy) / static_cast<double>(dx);
+	}
+
+	[[nodiscard]] long long y() const
 	{
 		return first;
 	}
 
-	int x() const
+	[[nodiscard]] long long x() const
 	{
 		return second;
 	}
@@ -96,11 +119,7 @@ public:
 
 	double getDirection(Coordinate const& other) const
 	{
-		double const dx = other.x() - x();
-		double const dy = other.y() - y();
-		if (std::abs(dx) < DBL_EPSILON)
-			return INT_MAX;
-		return dy / dx;
+		return location.getDirection(other.location);
 	}
 
 	int getDistanceSquared(Coordinate const& other) const
@@ -304,4 +323,9 @@ std::vector<std::vector<T>> const& generateCombinations(int const vectorSize, in
 
 	cache[key] = combinations;
 	return cache[key];
+}
+
+[[nodiscard]] inline bool equal(double a, double b)
+{
+	return std::abs(a - b) < DBL_EPSILON;
 }

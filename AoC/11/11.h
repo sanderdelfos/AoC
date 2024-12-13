@@ -54,7 +54,7 @@ public:
 	long long value;
 };
 
-inline auto parse(Input const& input)
+inline auto parseStones(Input const& input)
 {
 	std::vector<Stone> result;
 	for (auto const& part : split(input.lines[0], " "))
@@ -117,7 +117,7 @@ public:
 	using ListType = std::vector<std::vector<Stone> const*>;
 
 	Stones(Input const& input) :
-		originalList(parse(input))
+		originalList(parseStones(input))
 	{
 	}
 
