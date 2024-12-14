@@ -165,7 +165,7 @@ public:
 		{
 			for (auto const& coordinate : line)
 			{
-				std::cout << coordinate.strValue;
+				std::cout << (coordinate.intValue > -1 ? std::to_string(coordinate.intValue) : coordinate.strValue);
 			}
 			std::cout << "\n";
 		}
