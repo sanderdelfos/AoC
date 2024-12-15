@@ -160,17 +160,46 @@ public:
 
 	void draw() const
 	{
+		static int previousLines = 0; // Track the number of lines previously drawn
+		int currentLines = data.size() + 2; // Calculate lines this draw will use
+		static std::unordered_map<std::string, int> colorMap; // Map characters to colors
+		static int colorIndex = 1; // Start assigning colors from 1
+
+		// Hide the cursor
+		std::cout << "\033[?25l";
+
+		// Move the cursor up by the number of lines previously drawn
+		if (previousLines > 0)
+			std::cout << "\033[" << previousLines << "A"; // Move cursor up
+
 		std::cout << "\n";
 		for (auto const& line : data)
 		{
 			for (auto const& coordinate : line)
 			{
-				std::cout << (coordinate.intValue > -1 ? std::to_string(coordinate.intValue) : coordinate.strValue);
+				// Get the string to print
+				std::string value = (coordinate.intValue > -1)
+					                    ? std::to_string(coordinate.intValue)
+					                    : coordinate.strValue;
+
+				// Assign a color if not already assigned
+				if (!colorMap.contains(value))
+					colorMap[value] = 31 + (colorIndex++ % 6); // Cycle through 6 colors (31–36)
+
+				// Print the value with its assigned color
+				std::cout << "\033[" << colorMap[value] << "m" << value << "\033[0m"; // Reset color after printing
 			}
 			std::cout << "\n";
 		}
 		std::cout << "\n";
+
+		// Update the count of previously drawn lines
+		previousLines = currentLines;
+
+		// Show the cursor again
+		std::cout << "\033[?25h";
 	}
+
 
 	Coordinate& get(int const y, int const x)
 	{

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Input.h"
 
 class Warehouse : public Grid
@@ -209,7 +209,7 @@ public:
 		for (auto const& move : robotMoves)
 		{
 			moveRobot(move);
-			//draw();
+			draw();
 		}
 	}
 
@@ -255,7 +255,6 @@ public:
 	{
 		if (input.lines.empty())
 			return -1;
-
 
 		auto warehouse = Warehouse{Warehouse::expandInput(input)};
 		warehouse.moveRobot();
