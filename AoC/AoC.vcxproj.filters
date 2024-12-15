@@ -31,6 +31,9 @@
     <Filter Include="Source Files\14">
       <UniqueIdentifier>{169327a4-700b-481d-b3b1-56924a3cf6f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\15">
+      <UniqueIdentifier>{c18da8aa-9cc8-4f27-a9b2-ae349ff11bae}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\2">
       <UniqueIdentifier>{b157bfc2-dad3-49bf-a7a9-9143be6f0645}</UniqueIdentifier>
     </Filter>
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="14\14.h">
       <Filter>Source Files\14</Filter>
+    </ClInclude>
+    <ClInclude Include="15\15.h">
+      <Filter>Source Files\15</Filter>
     </ClInclude>
     <ClInclude Include="2\2.h">
       <Filter>Source Files\2</Filter>
@@ -147,6 +153,12 @@
     </Text>
     <Text Include="14\14Sample.txt">
       <Filter>Source Files\14</Filter>
+    </Text>
+    <Text Include="15\15.txt">
+      <Filter>Source Files\15</Filter>
+    </Text>
+    <Text Include="15\15Sample.txt">
+      <Filter>Source Files\15</Filter>
     </Text>
     <Text Include="2\2.txt">
       <Filter>Source Files\2</Filter>

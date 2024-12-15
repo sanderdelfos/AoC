@@ -177,7 +177,7 @@ public:
 		return data[y][x];
 	}
 
-	Coordinate& get(Location location)
+	Coordinate& get(const Location& location)
 	{
 		return data[location.first][location.second];
 	}
