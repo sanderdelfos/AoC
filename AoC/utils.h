@@ -318,6 +318,65 @@ public:
 	std::vector<std::vector<Coordinate>> data;
 };
 
+class GridMap
+{
+public:
+	GridMap(std::vector<std::string> const& input, bool const convertToInt)
+	{
+		int y = 0;
+		for (auto const& line : input)
+		{
+			int x = 0;
+			for (auto const& ch : line)
+			{
+				map[{y, x}] = Coordinate{std::string{ch}, x, y, convertToInt};
+				++x;
+			}
+			++y;
+		}
+	}
+
+	bool boundsCheck(Location const& location) const
+	{
+		return map.contains(location);
+	}
+
+	bool boundsCheck(Location const& current, Location const& move) const
+	{
+		return boundsCheck(current.move(move));
+	}
+
+	static auto getMoves()
+	{
+		return std::vector<Location>({{-1, 0}, {1, 0}, {0, 1}, {0, -1}});
+	}
+
+	auto getSurroundingLocations(Location const& location) const
+	{
+		std::vector<Location> result;
+		for (auto const& surroundingLocation : getMoves())
+			if (boundsCheck(location, surroundingLocation))
+				result.push_back(surroundingLocation);
+		return result;
+	}
+
+	long long xMax() const
+	{
+		for (auto const& location : map | std::views::reverse | std::views::keys)
+			return location.x();
+		return {};
+	}
+
+	long long yMax() const
+	{
+		for (auto const& location : map | std::views::reverse | std::views::keys)
+			return location.y();
+		return {};
+	}
+
+	std::map<Location, Coordinate> map;
+};
+
 template <typename T>
 std::vector<std::vector<T>> add(std::vector<T> const& combination, int const numOptions)
 {

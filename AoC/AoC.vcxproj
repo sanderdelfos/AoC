@@ -142,6 +142,7 @@
     <ClInclude Include="13\13.h" />
     <ClInclude Include="14\14.h" />
     <ClInclude Include="15\15.h" />
+    <ClInclude Include="16\16.h" />
     <ClInclude Include="5\5.h" />
     <ClInclude Include="4\4.h" />
     <ClInclude Include="1\1.h" />
@@ -167,6 +168,8 @@
     <Text Include="14\14Sample.txt" />
     <Text Include="15\15.txt" />
     <Text Include="15\15Sample.txt" />
+    <Text Include="16\16.txt" />
+    <Text Include="16\16Sample.txt" />
     <Text Include="5\5.txt" />
     <Text Include="5\5Sample.txt" />
     <Text Include="4\4.txt" />
