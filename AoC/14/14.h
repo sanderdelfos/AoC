@@ -155,11 +155,11 @@ public:
 
 		if (input.lines.size() < 100)
 		{
-			auto small = BathroomSecurity{input, 11, 7};
-			small.drawRobots();
-			small.moveRobots(100);
-			small.drawRobots();
-			return small.safetyFactor();
+			auto smallVariant = BathroomSecurity{input, 11, 7};
+			smallVariant.drawRobots();
+			smallVariant.moveRobots(100);
+			smallVariant.drawRobots();
+			return smallVariant.safetyFactor();
 		}
 
 		auto bathroomSecurity = BathroomSecurity{input, 101, 103};

@@ -60,7 +60,7 @@ public:
 		auto const maxPushesX = dx / d.x();
 		auto const maxPushesY = dy / d.y();
 
-		auto const maxPushes = std::min(maxPushesX, maxPushesY);
+		auto const maxPushes = min(maxPushesX, maxPushesY);
 		auto const dxMax = maxPushes * d.x();
 		auto const dyMax = maxPushes * d.y();
 		location = location.move({dyMax, dxMax});
@@ -121,7 +121,7 @@ public:
 			auto const distance = prize.getManhattenDistance(location);
 			auto move = [&](Location const& d, long long& pushes)
 			{
-				auto const multiplier = std::max(1ll, (distance / d.getManhattenDistance({0, 0})) / 10);
+				auto const multiplier = max(1ll, (distance / d.getManhattenDistance({0, 0})) / 10);
 				location = location.move(d, multiplier);
 				pushes += multiplier;
 			};

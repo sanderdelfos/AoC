@@ -6,6 +6,29 @@
 #include <vector>
 #include <ranges>
 #include <unordered_map>
+#include <rpc.h>
+#include <set>
+
+inline GUID newGuid()
+{
+	GUID guid;
+	UuidCreate(&guid);
+	return guid;
+}
+
+struct GUIDComparator
+{
+	bool operator()(const GUID& lhs, const GUID& rhs) const
+	{
+		return memcmp(&lhs, &rhs, sizeof(GUID)) < 0;
+	}
+};
+
+template <class T>
+using GuidMap = std::map<GUID, T, GUIDComparator>;
+
+using GuidSet = std::set<GUID, GUIDComparator>;
+
 
 inline std::vector<std::string> split(std::string const& text, std::string const& delimiter)
 {
@@ -336,6 +359,13 @@ public:
 		}
 	}
 
+	GridMap(int const yMax, int const xMax, std::string const& fill)
+	{
+		for (auto const y : range(yMax))
+			for (auto const x : range(xMax))
+				map[{y, x}] = Coordinate{fill, x, y, false};
+	}
+
 	bool boundsCheck(Location const& location) const
 	{
 		return map.contains(location);
@@ -372,6 +402,60 @@ public:
 		for (auto const& location : map | std::views::reverse | std::views::keys)
 			return location.y();
 		return {};
+	}
+
+	void draw() const
+	{
+		std::cout << "\n";
+		for (auto const y : range(yMax() + 1))
+		{
+			for (auto const x : range(xMax() + 1))
+			{
+				std::cout << map.at({y, x}).strValue;
+			}
+			std::cout << "\n";
+		}
+		return;
+
+		static int previousLines = 0; // Track the number of lines previously drawn
+		int currentLines = yMax() + 2; // Calculate lines this draw will use
+		static std::unordered_map<std::string, int> colorMap; // Map characters to colors
+		static int colorIndex = 1; // Start assigning colors from 1
+
+		// Hide the cursor
+		std::cout << "\033[?25l";
+
+		// Move the cursor up by the number of lines previously drawn
+		if (previousLines > 0)
+			std::cout << "\033[" << previousLines << "A"; // Move cursor up
+
+		std::cout << "\n";
+		for (auto const y : range(yMax()))
+		{
+			for (auto const x : range(xMax()))
+			{
+				auto const& coordinate = map.at({y, x});
+				// Get the string to print
+				std::string value = (coordinate.intValue > -1)
+					                    ? std::to_string(coordinate.intValue)
+					                    : coordinate.strValue;
+
+				// Assign a color if not already assigned
+				if (!colorMap.contains(value))
+					colorMap[value] = 31 + (colorIndex++ % 6); // Cycle through 6 colors (31–36)
+
+				// Print the value with its assigned color
+				std::cout << "\033[" << colorMap[value] << "m" << value << "\033[0m"; // Reset color after printing
+			}
+			std::cout << "\n";
+		}
+		std::cout << "\n";
+
+		// Update the count of previously drawn lines
+		previousLines = currentLines;
+
+		// Show the cursor again
+		std::cout << "\033[?25h";
 	}
 
 	std::map<Location, Coordinate> map;
