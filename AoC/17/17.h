@@ -130,47 +130,11 @@ public:
 		std::cout << output.back() << "\n";
 	}
 
-	static std::string score(std::vector<int> const& in)
-	{
-		std::string buffer;
-		for (auto const& num : in)
-			buffer += std::to_string(num);
-		return buffer;
-	}
-
-	bool isCopy()
-	{
-		static std::atomic_llong highscore;
-		auto const start = registerA;
-		auto const programSize = program.size();
-		while (instructionPointer < programSize && instructionPointer >= 0)
-		{
-			operate(program[instructionPointer], program[instructionPointer + 1]);
-			instructionPointer += 2;
-
-			if (output.size() > programSize)
-				return false;
-
-			for (auto const i : range(output.size()))
-				if (program[i] != output[i])
-					return false;
-
-			if (output.size() > highscore)
-			{
-				highscore = output.size();
-				std::cout << start << "\n";
-			}
-
-			if (output.size() == programSize)
-				return true;
-		}
-		return false;
-	}
-
 	long long findCopy()
 	{
 		auto const original = *this;
-		auto count = static_cast<long long>(std::pow(8, program.size() - 1)); // init count to get first number with desired size
+		auto count = static_cast<long long>(std::pow(8, program.size() - 1));
+		// init count to get first number with desired size
 		registerA = count;
 		while (true)
 		{
